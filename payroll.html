@@ -119,7 +119,7 @@
         <br><br>
         <button id="btnclear">Clear Employee List</button><br><br>
 
-        <label for="empno">Employee No.</label>
+        <label for="inputempno">Employee No.</label>
         <input id="inputempno" type="number"></input>
 
         <button id="btndelete">Delete Employee</button>
@@ -182,7 +182,8 @@
         }        
         function clear() {
             document.getElementById('deletemEplo').value = '';
-        }        
+        }
+
         function updatePayrollTable() {
             const payrollBody = document.getElementById('payroll-body');
             payrollBody.innerHTML = '';
@@ -208,6 +209,7 @@
 
                 totalNetPay += rowData.netPay;
             }
+            
 
             const totalRow = document.createElement('tr');
             totalRow.innerHTML = `
@@ -259,12 +261,17 @@
          var lblmsg = document.getElementById("dlgmsg").innerHTML;
          if (rst=="confirm") 
          {
-            if (lblmsg=="Clear the List?" ){ 
-               clear();
+            if (lblmsg=="Clear the List?" ){
+                payrollData=[];
+                document.getElementById("payroll-body").innerHTML = '';
+                updatePayrollTable();
+
+
             }  else if (lblmsg=="Delete Employee?")
             {
-                document.getElementById("inputempo").value='';
                 deleteEmployee();
+                document.getElementById("inputempo").value='';
+
             } 
          }
         });
