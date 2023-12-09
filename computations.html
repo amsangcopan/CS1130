@@ -10,7 +10,7 @@
 <style>
 
 #home {
-  background-image: url('images/seasky.jpg');
+  background-image: url('love.jpg');
   background-position: absolute;
   background-size: cover;
   background-repeat: no-repeat;
@@ -36,7 +36,11 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 <!-- Icon Bar (Sidebar - hidden on small screens) -->
 <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
   <!-- Avatar image in top left corner -->
-  <img src="images/love.jpg" style="width:100%">
+  <img src="love.jpg" style="width:100%">
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-home w3-xxlarge"></i>
+    <p>:)</p>
+  </a>
   <a href="#ftm" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
     <i class="fa fa-computer w3-xxlarge"></i>
     <p>FEET TO METERS</p>
@@ -52,10 +56,6 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
   <a href="#ftc" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
     <i class="fa fa-computer w3-xxlarge"></i>
     <p>F° to C°</p>
-  </a>
-  <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-black">
-    <i class="fa fa-home w3-xxlarge"></i>
-    <p>Back to Home</p>
   </a>
 </nav>
 
@@ -185,7 +185,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
         <input id="cel" type="number">
         <br><br>
         <button onclick="computeceltofahr()">Compute fahrenheit</button><br>
-        <button onclick="clearvalues()">Clear</button>
+        <button onclick="clearvalues2()">Clear</button>
         <br>
 
     <label for="fahr">Fahrenheit value is:</label>
@@ -212,7 +212,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 
     }
 
-    function clearvalues()
+    function clearvalues2()
     {
 
        cel = document.getElementById("cel").value = '';
@@ -230,7 +230,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
         <input id="fahr" type="number">
         <br><br>
         <button onclick="computefahrtocel()">Compute Celsius</button><br>
-        <button onclick="clearvalues()">Clear</button>
+        <button onclick="clearvalues3()">Clear</button>
         <br>
 
     <label for="celsius">celsius value is:</label>
@@ -253,7 +253,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 
     }
 
-    function clearvalues()
+    function clearvalues3()
     {
 
        fahr = document.getElementById("fahr").value = '';
@@ -279,4 +279,3 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 
 </body>
 </html>
-
