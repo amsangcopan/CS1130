@@ -1,177 +1,275 @@
-<!DOCTYPE html>
-<html>
+ <!DOCTYPE html>
+<html lang="en">
 <head>
- <style>
-   #maindiv {
-      display:grid;
-     grid-template-rows: 100px,100px,100px,100px,100px,
-                         100px,100px,100px,100px,100px,
-                         100px,100px,100px,100px,100px,
-                         100px,100px,100px,100px,100px;
-     grid-template-columns: 100px,100px,100px,100px,
-                            100px,100px,100px,100px;
-     width:98%;
-   }
-   h3 {
-     text-align:center;
-   }
-   h2 {
-     text-align:center;
-   }
-   #headerdiv{
-      grid-row-start:1;
-      grid-row-end:1;
-      grid-column-start:1;
-      grid-column-end:8;
-      background-color :#f2f2f2
-   }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emplpyee Payroll</title>
+    <style>
+        #header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            text-align: center;
+        }
 
-   #inputdiv{
-      grid-row-start:2;
-      grid-row-end:10;
-      grid-column-start:1;
-      grid-column-end:3;
-      width:400px;
-      padding-left:5px;
-      border-top:solid 1px;
-      border-left:solid 1px;      
-      border-bottom:solid 1px;
-      border-right:solid 1px;  
-      height:250px;    
+        #header h1 {
+            margin: 0;
+            font-size: 48px;
+            font-weight: bold;
+        }
 
-   }
+        #header h1 a {
+            text-decoration: none;
+            color: #333;
+        }
 
-  #buttonsdiv{
-      grid-row-start:2;
-      grid-row-end:10;
-      grid-column-start:4;
-      grid-column-end:4;
-      width:200px;   
-      padding-left:10px;
+        #payroll-container {
+            text-align: center;
+            margin-top: 50px;
+        }
 
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
 
-   }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
 
- #cartdiv{
-      grid-row-start:2;
-      grid-row-end:20;
-      grid-column-start:5;
-      grid-column-end:8;
-      padding-left:10px;
-      width:850px;
-      height:600px;
-      border-top:solid 1px;
-      border-left:solid 1px;      
-      border-bottom:solid 1px;
-      border-right:solid 1px;      
+        th {
+            background-color: #f2f2f2;
+        }
 
-   }
+        #add-form, #delete-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
 
- 
-   #btnaddtocart {
-      margin-top:80px;
-   }
-   #pagefooter {
-      text-align:center;
-      color:#ff99cc
-   }
-   #pageheader {
-      text-align:center;
-      color:#ff99cc
-   }
+        #add-form label, #delete-form label {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
 
-   #totalamount {
-      text-align:right;
-    
-   }
-   .inputlabel{
-      display:inline-block;
-      width: 80px;
-      text-align :right;
-   }
+        #add-form input, #delete-form input, #add-form button, #delete-form button {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-   #itemstable {
-     margin-left:auto;
-     margin-right:auto;
-   }
-   #footerdiv{
-      grid-row-start:20;
-      grid-row-end:20;
-      grid-column-start:1;
-      grid-column-end:8;
-      background-color :#f2f2f2
-   }
+        #add-form button, #delete-form button {
+            background-color: #666;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
 
-   #itemdesc {
-      width:200px;
-   }
-
-   #amountcolumn, #pricecolumn {
-      width:100px;
-   }
-
-   #tablebody tr:nth-child(even){background-color: #f2f2f2;}
-   #tablebody tr:nth-child(odd){background-color: #bfddf1;}
-
- </style>  
+        #add-form button:hover, #delete-form button:hover {
+            background-color: #444;
+        }
+    </style>
 </head>
 <body>
-<div id="maindiv">
-   <div id ="footerdiv">
-      <h2 id="pagefooter">Copyright 2023</h2>     
-   </div>
-      <div id ="headerdiv">
-      <h2 id="pageheader">EMPLOYEE PAYROLL LIST</h2>     
-   </div>
-   <div id="inputdiv">
+    <div id="payroll-container">
+        <h2>Payroll Program</h2>
 
-      <label class="inputlabel" for="name">Employee Name:</label>
-      <input id="name" type="text" ></input><br><br>
-      <label class="inputlabel" for="work">Days Worked:</label>
-      <input id="work" type="number"></input><br><br>
-      <label class="inputlabel" for="rate">Daily Rate:</label>
-      <input id="rate" type="number"></input><br><br>
-      <label class="inputlabel" for="deduct">Deduction Amount:</label>
-      <input id="deduct" type="number"></input><br>
+        <div id="add-form">
+            <label for="employee-name">Employee Name:</label>
+            <input type="text" id="employee-name"/>
 
-   </div>
-   <div id="buttonsdiv">
-       <button id="btnaddtocart">Add Item</button>
-       <br><br>
-       <button id="btnclearcart">Clear Cart</button> 
-   </div>
+            <label for="days-worked">Days Worked:</label>
+            <input type="number" id="days-worked"/>
 
- <div id="cartdiv">
-      <h3>EMPLOYEE LIST</h3>
-      <table id="itemstable" border=1>
-          <thead>
-              <tr>
-                  <td>Employee No.</td>
-                  <td id="itemdesc">Employee Name</td>
-                  <td id="workclmn">Days Worked</td>
-                  <td id="rateclmn">Daily Rate</td>
-                  <td id="deductclmn">Deduction Amount</td>
-                  <td id="grossclmn">GROSS PAY</td>
-                  <td id="clmn">NET PAY</td>
-              </tr>
-          </thead>
-          <tbody id="tablebody">
-          </tbody>
+            <label for="daily-rate">Daily Rate:</label>
+            <input type="number" id="daily-rate"/>
 
-      </table>
-      <br><br>
-          <label class="inputline" for="items">Employee List:</label>
-          <input id="items"  type="number" readonly></input>
-          
-          <label class="inputline" for="itemno">Delete Item:</label>
-          <input id="delitem" type="number"></input>
-          <button id="btndelete">Delete</button>
-          
-   </div>
-</div>
+            <label for="deduction-amount">Deduction Amount:</label>
+            <input type="number" id="deduction-amount"/>
+
+            <button onclick="addEmployee()">Add Employee</button>
+        </div>
+
+        <table id="payroll-table">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Employee Name</th>
+                    <th>Days Worked</th>
+                    <th>Daily Rate</th>
+                    <th>Gross Pay</th>
+                    <th>Deduction Amount</th>
+                    <th>Net Pay</th>
+                </tr>
+            </thead>
+            <tbody id="payroll-body"></tbody>
+        </table>
+        <br><br>
+        <button id="btnclear">Clear Employee List</button><br><br>
+
+        <label for="empno">Employee No.</label>
+        <input id="inputempno" type="number"></input>
+
+        <button id="btndelete">Delete Employee</button>
+
+        <br><br>
+
+        <a href="index.html">Back to Home</a>
+        
+
+    </div>
+
+    
+        <dialog id="dlgConfirmCancel">
+         <form method="dialog">
+           <h4 id="dlgmsg"></h4>
+           <button id="btnConfirm" value="confirm">Confirm</button>
+           <button id="btnCancel" value="confirm">Cancel</button>
+         </form>
+        </dialog>
+
+    <script type="text/javascript">
+
+        let payrollData = [];
+
+        function addEmployee() {
+            const employeeName = document.getElementById('employee-name').value;
+            const daysWorked = parseInt(document.getElementById('days-worked').value);
+            const dailyRate = parseFloat(document.getElementById('daily-rate').value);
+            const deductionAmount = parseFloat(document.getElementById('deduction-amount').value);
+
+            if (isNaN(daysWorked) || isNaN(dailyRate) || isNaN(deductionAmount)) {
+                window.alert('Please enter valid numbers.');
+                return;
+            }
+
+            const grossPay = daysWorked * dailyRate;
+            const netPay = grossPay - deductionAmount;
+
+            payrollData.push({
+                employeeName,
+                daysWorked,
+                dailyRate,
+                grossPay,
+                deductionAmount,
+                netPay
+            });
+
+            updatePayrollTable();
+        }
+        function deleteEmployee(){
+            const deleteEmplo = parseInt(document.getElementById('inputempno').value);
+
+            if (isNaN(deleteEmplo) || deleteEmplo < 1 || deleteEmplo > payrollData.length) {
+                window.alert('Please enter a valid line number.');
+                return;
+            }
+            payrollData.splice(deleteEmplo - 1, 1);
+            updatePayrollTable();
+            clear();
+        }        
+        function clear() {
+            document.getElementById('deletemEplo').value = '';
+        }        
+        function updatePayrollTable() {
+            const payrollBody = document.getElementById('payroll-body');
+            payrollBody.innerHTML = '';
+
+            let totalNetPay = 0;
+
+            for (let i = 0; i < payrollData.length; i++) {
+                const rowData = payrollData[i];
+                const no = i + 1;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${no}</td>
+                    <td>${rowData.employeeName}</td>
+                    <td>${rowData.daysWorked}</td>
+                    <td>${rowData.dailyRate}</td>
+                    <td>${rowData.grossPay}</td>
+                    <td>${rowData.deductionAmount}</td>
+                    <td>${rowData.netPay}</td>
+                `;
+
+                payrollBody.appendChild(row);
+
+                totalNetPay += rowData.netPay;
+            }
+
+            const totalRow = document.createElement('tr');
+            totalRow.innerHTML = `
+                <td colspan="6" style="text-align: right; font-weight: bold;">Total Net Pay:</td>
+                <td style="font-weight: bold;">${totalNetPay.toFixed(2)}</td>
+            `;
+
+            payrollBody.appendChild(totalRow);
+        }
+
+    (() => {
+        const dlgConfirmCancel=document.getElementById("dlgConfirmCancel");
+
+        dlgConfirmCancel.returnValue="confirm";
+
+        document.getElementById("btnclear").addEventListener("click",
+        ()=>{
+          document.getElementById("dlgmsg").innerHTML="Clear the List?"
+          dlgConfirmCancel.showModal();
+        });
+
+        dlgConfirmCancel.returnValue="confirm";
+
+        document.getElementById("btndelete").addEventListener("click",
+        ()=>{
+          document.getElementById("dlgmsg").innerHTML="Delete Employee?"
+          dlgConfirmCancel.showModal();
+        });
+    
+
+        const btnConfirm=document.getElementById("btnConfirm");
+
+        btnConfirm.addEventListener("click",()=>{
+            dlgConfirmCancel.returnValue="confirm";
+            dlgConfirmCancel.close("confirm");
+        });     
+
+        const btnCancel=document.getElementById("btnCancel");
+
+        btnCancel.addEventListener("click",()=>{
+            dlgConfirmCancel.returnValue="cancel";
+            dlgConfirmCancel.close("cancel");
+        });
 
 
-
-
- </body>
- </html>
+        dlgConfirmCancel.addEventListener("close",(e)=>
+        {
+         var rst=e.target.returnValue;
+         var lblmsg = document.getElementById("dlgmsg").innerHTML;
+         if (rst=="confirm") 
+         {
+            if (lblmsg=="Clear the List?" ){ 
+               clear();
+            }  else if (lblmsg=="Delete Employee?")
+            {
+                document.getElementById("inputempo").value='';
+                deleteEmployee();
+            } 
+         }
+        });
+    
+    })();
+    </script>
+</body>
+</html>
